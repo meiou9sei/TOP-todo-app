@@ -53,3 +53,14 @@ main {
   display: flex;
   flex-direction: column;
 }
+
+.warning {
+  background-color: lightcoral;
+  text-align: center;
+  font-weight: bold;
+  padding: 16px;
+  width: 25%;
+  align-self: center;
+  border-radius: 10px;
+  margin: 8px;
+}
