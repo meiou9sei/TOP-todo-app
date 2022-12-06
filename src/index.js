@@ -1,3 +1,5 @@
+import "./styles.css";
+
 import TodoItems from "./components/TodoItems";
 import Projects from "./components/Projects";
 
