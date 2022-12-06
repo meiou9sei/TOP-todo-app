@@ -24,24 +24,16 @@ const todoItemsArray = [
   },
 ];
 
-let testTodoItem = {
-  id: 1,
-  project: "cooking",
-  title: "make macaroni",
-  description: "I'm gonna make some yummy macaroni tonight",
-  dueDate: "24/03/2020",
-  priority: 3,
-  complete: false,
-};
-
 const projectsArray = [
   {
     id: 0,
     name: "inbox",
+    active: true,
   },
   {
     id: 1,
     name: "cooking",
+    active: false,
   },
 ];
 //make inbox project id: 0 and delete stuff above 0

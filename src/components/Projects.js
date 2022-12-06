@@ -5,6 +5,9 @@ export default function Project(projectsArray) {
     const projectItem = document.createElement("li");
     projectItem.textContent = project.name;
     projectItem.setAttribute("id", project.id);
+    project.active
+      ? projectItem.classList.add("active-project")
+      : projectItem.classList.remove("active-project");
     projectElement.appendChild(projectItem);
   });
 

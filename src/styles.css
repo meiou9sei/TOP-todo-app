@@ -29,6 +29,21 @@ img {
 }
 
 main {
+    margin-top: 100px;
     display: grid;
-    grid-template-columns: minmax(100px, 3fr) minmax(300px, 7fr); 
+    grid: 
+      '. projects todos .' auto /
+      1fr minmax(100px, 2fr) minmax(300px, 6fr) 1fr;
+}
+
+.projects {
+  grid-area: projects;
+}
+
+.active-project {
+  font-weight: bold;
+}
+
+.todos {
+  grid-area: todos;
 }
