@@ -21,7 +21,28 @@
             <ul class="todos-container"></ul>
             <form class="new-todo-adder">
                 <h3>Create new Todo</h3>
-                
+                <div class="form-input">
+                    <label for="new-project-title">Todo: </label>
+                    <input type="text" name="new-project-title" id="new-project-title">
+                </div>
+                <div class="form-input">
+                    <label for="new-project-description">Description: </label>
+                    <input type="text" name="new-project-description" id="new-project-description">
+                </div>
+                <div class="form-input">
+                    <label for="new-project-dueDate">Due: </label>
+                    <input type="date" name="new-project-dueDate" id="new-project-dueDate">
+                </div>
+                <div class="form-input">
+                    <label for="new-project-priority">Priority: </label>
+                    <select name="new-project-priority" id="new-project-priority">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>
+                </div>
+                <button type="submit">Create New Todo</button>
             </form>
         </div>
     </main>
