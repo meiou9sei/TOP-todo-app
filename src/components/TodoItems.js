@@ -1,4 +1,4 @@
-export default function TodoItem(todoItem) {
+export default function TodoItems(todoItem) {
   const todoItemTemplate = document.getElementById("todoItem-template");
   const todoItemElement = document.importNode(todoItemTemplate.content, true);
   const checkbox = todoItemElement.querySelector("input");

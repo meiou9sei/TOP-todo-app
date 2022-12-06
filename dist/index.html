@@ -8,10 +8,30 @@
     <script src="main.js" defer></script>
 </head>
 <body>
-    <div id="content"></div>
-<!--test2-->
+    <main>
+        <div class="projects">
+            <h2>Projects</h2>
+            <div class="projects-list-container"></div>
+            <form class="new-project-adder">
+                <h3>Create new Project</h3>
+            </form>
+        </div>
+        <div class="todos">
+            <h2>Todos</h2>
+            <ul class="todos-container"></ul>
+            <form class="new-todo-adder">
+                <h3>Create new Todo</h3>
+                
+            </form>
+        </div>
+    </main>
+    <footer>
+        <p class="footer-text">Webpage created by <a href="https://github.com/meiou9sei" class="links" target=_blank>meiou9sei</a> as part of <a href="https://theodinproject.com" class="links" target=_blank>The Odin Project</a> course curriculum.</p>
+        <p><small><a href=https://github.com/meiou9sei/TOP-todo-app class="links" target=_blank>See the code for this page</a></small></p>
+    </footer>
+
     <template id="todoItem-template">
-        <div class="todoItem">
+        <li class="todoItem">
             <input type="checkbox" />
             <label class="todoItem-title"></label>
             <div class="todoItem-details-container">
@@ -19,7 +39,7 @@
                 <p class="todoItem-dueDate"></p>
                 <p class="todoItem-priority"></p>
             </div>
-        </div>
+        </li>
     </template>
 </body>
 </html>
