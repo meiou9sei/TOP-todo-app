@@ -6,9 +6,14 @@ import Projects from "./components/Projects";
 //test data to delete later
 import { todoItemsArray, projectsArray } from "./testData";
 
-function displayContent() {
-  // prob separate these into their own util functions / modules later
+function runApp() {
+  displayContent();
+}
 
+runApp();
+
+// prob separate this into its own util function / module later
+function displayContent() {
   //displays projects - just pass in all the arrays
   const projectsListContainer = document.querySelector(
     ".projects-list-container"
@@ -26,5 +31,3 @@ function displayContent() {
 
   return todosContainer;
 }
-
-displayContent();
