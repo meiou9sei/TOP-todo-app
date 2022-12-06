@@ -37,10 +37,6 @@ const projectsArray = [
   },
 ];
 //make inbox project id: 0 and delete stuff above 0
-let testProject = {
-  id: 5,
-  name: "gardening",
-};
 
 function displayContent() {
   // prob separate these into their own util functions / modules later

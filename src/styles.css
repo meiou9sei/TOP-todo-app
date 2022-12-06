@@ -36,6 +36,7 @@ main {
       1fr minmax(100px, 2fr) minmax(300px, 6fr) 1fr;
 }
 
+
 .projects {
   grid-area: projects;
 }
@@ -46,4 +47,9 @@ main {
 
 .todos {
   grid-area: todos;
+}
+
+.new-todo-adder {
+  display: flex;
+  flex-direction: column;
 }
