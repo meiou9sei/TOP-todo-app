@@ -22,20 +22,20 @@
             <form class="new-todo-adder">
                 <h3>Create new Todo</h3>
                 <div class="form-input">
-                    <label for="new-project-title">Todo: </label>
-                    <input required type="text" name="new-project-title" id="new-project-title">
+                    <label for="new-todo-title">Todo: </label>
+                    <input required type="text" name="new-todo-title" id="new-todo-title">
                 </div>
                 <div class="form-input">
-                    <label for="new-project-description">Description: </label>
-                    <input required type="text" name="new-project-description" id="new-project-description">
+                    <label for="new-todo-description">Description: </label>
+                    <input required type="text" name="new-todo-description" id="new-todo-description">
                 </div>
                 <div class="form-input">
-                    <label for="new-project-dueDate">Due: </label>
-                    <input required type="date" name="new-project-dueDate" id="new-project-dueDate">
+                    <label for="new-todo-dueDate">Due: </label>
+                    <input required type="date" name="new-todo-dueDate" id="new-todo-dueDate">
                 </div>
                 <div class="form-input">
-                    <label for="new-project-priority">Priority: </label>
-                    <select name="new-project-priority" id="new-project-priority">
+                    <label for="new-todo-priority">Priority: </label>
+                    <select name="new-todo-priority" id="new-todo-priority">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -52,15 +52,51 @@
     </footer>
 
     <template id="todoItem-template">
-        <li class="todoItem">
-            <input type="checkbox" />
-            <label class="todoItem-title"></label>
-            <div class="todoItem-details-container">
-                <p class="todoItem-description"></p>
-                <p class="todoItem-dueDate"></p>
-                <p class="todoItem-priority"></p>
-            </div>
+        <li class="todoItemContainer">
+            <div class="todoItem">
+                <input type="checkbox" />
+                <label class="todoItem-title"></label>
+                <div class="todoItem-details-container">
+                    <p class="todoItem-description"></p>
+                    <p class="todoItem-dueDate"></p>
+                    <p class="todoItem-priority"></p>
+                </div>
+            </li>
         </li>
+    </template>
+
+    <template id="editTodoItem-template">
+        <form class="new-todo-adder">
+            <h3>Edit Todo</h3>
+            <div class="form-input">
+                <label for="new-todo-title">Todo: </label>
+                <input required type="text" name="new-todo-title" id="new-todo-title">
+            </div>
+            <div class="form-input">
+                <label for="new-todo-description">Description: </label>
+                <input required type="text" name="new-todo-description" id="new-todo-description">
+            </div>
+            <div class="form-input">
+                <label for="new-todo-dueDate">Due: </label>
+                <input required type="date" name="new-todo-dueDate" id="new-todo-dueDate">
+            </div>
+            <div class="form-input">
+                <label for="new-todo-priority">Priority: </label>
+                <select name="new-todo-priority" id="new-todo-priority">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            <div class="form-input">
+                <label for="todo"></label>
+            </div>
+            <div class="edit-confirm-buttons">
+                <button class="save-edit-button">Save</button>
+                <button class="cancel-edit-button">Cancel</button>
+            </div>
+        </form>
     </template>
 </body>
 </html>
