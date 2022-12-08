@@ -5,7 +5,7 @@ const todoItemsArray = [
     project: "cooking",
     title: "make macaroni",
     description: "I'm gonna make some yummy macaroni tonight",
-    dueDate: "24/03/2023",
+    dueDate: "2023-03-24",
     priority: 2,
     complete: false,
   },
@@ -14,7 +14,7 @@ const todoItemsArray = [
     project: "inbox",
     title: "check email",
     description: "gotta delete some spam mail",
-    dueDate: "22/04/2023",
+    dueDate: "2023-04-22",
     priority: 4,
     complete: true,
   },
@@ -49,11 +49,69 @@ function renderNewData() {
     // todoItem.project ===
     todosList.appendChild(TodoItems(todoItem));
   });
+
+  setUpEditButtons();
 }
 
 function setupNewTodoButton() {
   const submitNewTodo = document.querySelector("#submit-new-todo");
   submitNewTodo.addEventListener("click", (e) => addNewTodoItem(e));
+}
+
+function setUpEditButtons() {
+  const todoItemsLI = document.querySelectorAll(".todoItem");
+  console.log(todoItemsLI);
+  todoItemsLI.forEach((todoItemLI) => {
+    const todoItemID = todoItemLI.querySelector("input").id;
+    console.log(todoItemID);
+    const todoObject = todoItemsArray.find((obj) => obj.id == todoItemID);
+
+    const editButton = document.createElement("button");
+    editButton.textContent = "Edit Todo";
+    editButton.classList.add("edit-button");
+    editButton.addEventListener("click", (e) => {
+      // this is not best practices lmao, but it's fine, this is a small project w/ a deadline
+      const todoItemContainer = editButton.parentElement.parentElement;
+      todoItemContainer.removeChild(todoItemLI);
+      // cloning and filling in relevant details
+      // prettier-ignore
+      const editTodoItemTemplate = document.getElementById("editTodoItem-template");
+      // prettier-ignore
+      const todoItemEditor = document.importNode(editTodoItemTemplate.content, true);
+      /***********************  fill out info ******************************/
+      const newTodoTitle = todoItemEditor.querySelector("#new-todo-title");
+      newTodoTitle.value = todoObject.title;
+      // prettier-ignore
+      const newTodoDescription = todoItemEditor.querySelector("#new-todo-description");
+      newTodoDescription.value = todoObject.description;
+      const newTodoDueDate = todoItemEditor.querySelector("#new-todo-dueDate");
+      newTodoDueDate.value = todoObject.dueDate;
+      // prettier-ignore
+      const newTodoPriority = todoItemEditor.querySelector("#new-todo-priority");
+      newTodoPriority.value = todoObject.priority;
+      // have project selector here - need to generate <option> with projects auto-listed out. please generate them from the projects array and not DOM btw (need to redo code for detecting what's active too)
+
+      // save button updates local active data
+      const saveEditBtn = todoItemEditor.querySelector(".save-edit-button");
+      saveEditBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        todoObject.title = newTodoTitle.value;
+        todoObject.description = newTodoDescription.value;
+        todoObject.dueDate = newTodoDueDate.value;
+        todoObject.priority = newTodoPriority.value;
+        updateAndRender();
+      });
+      // cancel button does nothing, just exits
+      const cancelEditBtn = todoItemEditor.querySelector(".cancel-edit-button");
+      cancelEditBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        updateAndRender();
+      });
+
+      todoItemContainer.appendChild(todoItemEditor);
+    });
+    todoItemLI.appendChild(editButton);
+  });
 }
 
 function TodoItems(todoItem) {
@@ -79,10 +137,10 @@ function addNewTodoItem(e) {
   e.preventDefault();
 
   let project = document.querySelector(".active-project").textContent;
-  let title = document.querySelector("#new-project-title").value;
-  let description = document.querySelector("#new-project-description").value;
-  let dueDate = document.querySelector("#new-project-dueDate").value;
-  let priority = document.querySelector("#new-project-priority").value;
+  let title = document.querySelector("#new-todo-title").value;
+  let description = document.querySelector("#new-todo-description").value;
+  let dueDate = document.querySelector("#new-todo-dueDate").value;
+  let priority = document.querySelector("#new-todo-priority").value;
 
   // checks if input empty
   if (!title) {
