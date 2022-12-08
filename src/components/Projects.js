@@ -1,6 +1,6 @@
 export default function Project(projectsArray) {
   const projectElement = document.createElement("ul");
-  projectElement.classList.add("project-item");
+  projectElement.classList.add("projects-list");
   projectsArray.forEach((project) => {
     const projectItem = document.createElement("li");
     projectItem.textContent = project.name;

@@ -21,32 +21,76 @@ img {
 /* CSS RESET ^ */
 
 :root {
-    --primary: #4d7c8a;
+    --primary: #138cb1;
     --primary-dark: #1b4079;
-    --primary-light: #7f9c96;
+    --primary-light: #30bda1;
     --secondary: #cbdf90;
-    --secondary-dark: #8fad88; 
+    --secondary-dark: #73d85c; 
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--primary-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+header {
+  width: 100%;
+  padding: 25px;
+  background-color: var(--primary);
 }
 
 main {
-    margin-top: 100px;
-    display: grid;
-    grid: 
-      '. projects todos .' auto /
-      1fr minmax(100px, 2fr) minmax(300px, 6fr) 1fr;
+  display: grid;
+  grid: 
+    '. projects . todos .' auto /
+    1fr minmax(100px, 2fr) 1fr minmax(300px, 5fr) 1fr;
+  background-color: var(--primary-dark);
+  padding: 16px;
+  width: 100%;
+  max-width: 1920px;
 }
 
+li {
+  list-style-type: none;
+}
+
+h2 {
+  margin-bottom: 16px;
+}
 
 .projects {
   grid-area: projects;
+  background-color: var(--primary-light);
+  padding: 16px;
+  box-shadow: 8px 8px var(--primary);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.projects-list li {
+  padding: 4px;
+}
+
+.new-project-adder {
+  margin-top: auto;
 }
 
 .active-project {
   font-weight: bold;
+  background-color: var(--primary);
+  border-radius: 5px;
 }
 
 .todos {
   grid-area: todos;
+  background-color: var(--secondary);
+  padding: 16px;
+  box-shadow: 8px 8px var(--secondary-dark);
 }
 
 .new-todo-adder {
@@ -63,4 +107,22 @@ main {
   align-self: center;
   border-radius: 10px;
   margin: 8px;
+}
+
+footer {
+  width: 100%;
+  padding: 8px;
+  background-color: var(--primary);
+  color: black;
+  text-align: center;
+  margin-top: auto;
+}
+
+footer a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--secondary-dark);
 }
