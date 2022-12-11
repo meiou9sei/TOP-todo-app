@@ -75,16 +75,22 @@ h2 {
 
 .projects-list li {
   padding: 4px;
+  cursor: pointer;
 }
 
-.new-project-adder {
-  margin-top: auto;
+.projects-list li:hover {
+  background-color: rgba(19, 140, 177, 0.5);
+  border-radius: var(--round-border);
 }
 
 .active-project {
   font-weight: bold;
   background-color: var(--primary);
   border-radius: var(--round-border);
+}
+
+.new-project-adder {
+  margin-top: auto;
 }
 
 .todos {
