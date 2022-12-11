@@ -134,6 +134,15 @@ h2 {
   font-size: 1.25rem;
 }
 
+.todoItem-details-container {
+  margin-left: 27px;
+}
+
+.todoItem-dueDate,
+.todoItem-priority {
+  font-size: 0.75rem;
+}
+
 .new-todo-adder {
   display: flex;
   flex-direction: column;
