@@ -26,6 +26,7 @@ img {
     --primary-light: #30bda1;
     --secondary: #cbdf90;
     --secondary-dark: #73d85c; 
+    --round-border: 10px;
 }
 
 body {
@@ -83,7 +84,7 @@ h2 {
 .active-project {
   font-weight: bold;
   background-color: var(--primary);
-  border-radius: 5px;
+  border-radius: var(--round-border);
 }
 
 .todos {
@@ -91,6 +92,38 @@ h2 {
   background-color: var(--secondary);
   padding: 16px;
   box-shadow: 8px 8px var(--secondary-dark);
+}
+
+.todoItemContainer {
+  margin: 4px;
+  padding: 4px;
+  background-color: var(--primary-light);
+  border-radius: var(--round-border);
+}
+
+.todoItem-header {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-round {
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+  border: 4px solid white;
+  vertical-align: middle;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.checkbox-round:checked {
+  background-color: var(--primary-dark);
+  border: 4px solid white;
+}
+
+.todoItem-title {
+  font-size: 1.25rem;
 }
 
 .new-todo-adder {
