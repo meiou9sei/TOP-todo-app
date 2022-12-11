@@ -63,10 +63,8 @@ function setUpEditButtons() {
   // set up flag so can't edit more than 1 at a time
   let isCurrentlyEditingTodo = false;
   const todoItemsLI = document.querySelectorAll(".todoItem");
-  console.log(todoItemsLI);
   todoItemsLI.forEach((todoItemLI) => {
     const todoItemID = todoItemLI.querySelector("input").id;
-    console.log(todoItemID);
     const todoObject = todoItemsArray.find((obj) => obj.id == todoItemID);
 
     const editButton = document.createElement("button");
