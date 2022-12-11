@@ -1,7 +1,11 @@
 import { projectsArray } from "./Projects";
 
-const todoItemsArray = [];
+const LOCAL_STORAGE_TODO_KEY = "todo.todos";
 
+const todoItemsArray =
+  JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODO_KEY)) || [];
+
+/* example todo object */
 // {
 //   id: 1,
 //   project: "cooking",
@@ -25,7 +29,7 @@ function updateAndRender() {
 
 function updateData() {
   // this function adds data to localStorage
-  console.log("updating");
+  localStorage.setItem(LOCAL_STORAGE_TODO_KEY, JSON.stringify(todoItemsArray));
 }
 
 function renderNewData() {
