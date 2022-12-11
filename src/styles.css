@@ -109,6 +109,11 @@ h2 {
   border-radius: var(--round-border);
 }
 
+.todoItem {
+  display: flex;
+  flex-direction: column;
+}
+
 .todoItem-header {
   display: flex;
   align-items: center;
@@ -149,7 +154,13 @@ h2 {
   font-size: 0.75rem;
 }
 
+.edit-button {
+  width: 25%;
+  align-self: center;
+}
+
 .new-todo-adder {
+  margin-top: 36px;
   display: flex;
   flex-direction: column;
 }
