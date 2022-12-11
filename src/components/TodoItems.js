@@ -25,7 +25,6 @@ const todoItemsArray = [
 export default function displayTodos() {
   // add initial reading from JSON data later
   setupNewTodoButton();
-
   renderNewData();
 }
 
