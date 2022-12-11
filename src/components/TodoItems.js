@@ -1,26 +1,17 @@
 import { projectsArray } from "./Projects";
 
 // empty this later and have a fetch from storage option
-const todoItemsArray = [
-  {
-    id: 1,
-    project: "cooking",
-    title: "make macaroni",
-    description: "I'm gonna make some yummy macaroni tonight",
-    dueDate: "2023-03-24",
-    priority: 2,
-    complete: false,
-  },
-  {
-    id: 2,
-    project: "inbox",
-    title: "check email",
-    description: "gotta delete some spam mail",
-    dueDate: "2023-04-22",
-    priority: 4,
-    complete: true,
-  },
-];
+const todoItemsArray = [];
+
+// {
+//   id: 1,
+//   project: "cooking",
+//   title: "make macaroni",
+//   description: "I'm gonna make some yummy macaroni tonight",
+//   dueDate: "2023-03-24",
+//   priority: 2,
+//   complete: false,
+// },
 
 export default function displayTodos() {
   // add initial reading from JSON data later
