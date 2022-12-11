@@ -14,7 +14,18 @@ export const projectsArray = [
 ];
 
 export default function displayProjects() {
+  setupNewProjectButton();
   renderNewData();
+}
+
+function updateAndRender() {
+  updateData();
+  renderNewData();
+}
+
+function updateData() {
+  // this function adds data to JSON
+  console.log("updating");
 }
 
 function renderNewData() {
@@ -47,4 +58,22 @@ function renderNewData() {
   });
 
   projectsListContainer.appendChild(projectsList);
+}
+
+function setupNewProjectButton() {
+  const submitNewProject = document.querySelector("#submit-new-project");
+  submitNewProject.addEventListener("click", (e) => addNewProjectItem(e));
+}
+
+function addNewProjectItem(e) {
+  e.preventDefault();
+  let name = document.querySelector("#new-project-title").value;
+  let newProject = {
+    id: Date.now().toString(),
+    name: name,
+    active: false,
+  };
+  document.querySelector(".new-project-adder").reset();
+  projectsArray.push(newProject);
+  updateAndRender();
 }
