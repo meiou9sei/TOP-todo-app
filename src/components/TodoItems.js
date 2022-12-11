@@ -1,6 +1,5 @@
 import { projectsArray } from "./Projects";
 
-// empty this later and have a fetch from storage option
 const todoItemsArray = [];
 
 // {
@@ -14,7 +13,7 @@ const todoItemsArray = [];
 // },
 
 export default function displayTodos() {
-  // add initial reading from JSON data later
+  // add initial reading from localStorage data later
   setupNewTodoButton();
   renderNewData();
 }
@@ -25,7 +24,7 @@ function updateAndRender() {
 }
 
 function updateData() {
-  // this function adds data to JSON
+  // this function adds data to localStorage
   console.log("updating");
 }
 
