@@ -121,6 +121,9 @@ function TodoItems(todoItem) {
   const checkbox = todoItemElement.querySelector("input");
   checkbox.id = todoItem.id;
   checkbox.checked = todoItem.complete;
+  checkbox.addEventListener("click", () => {
+    todoItem.complete = !todoItem.complete;
+  });
   const label = todoItemElement.querySelector("label");
   label.htmlFor = todoItem.id;
   label.append(todoItem.title);
