@@ -17,6 +17,16 @@ export default function displayProjects() {
   renderNewData();
 }
 
+function updateAndRender() {
+  updateData();
+  renderNewData();
+}
+
+function updateData() {
+  // this function adds data to JSON
+  console.log("updating");
+}
+
 function renderNewData() {
   const projectsListContainer = document.querySelector(
     ".projects-list-container"
