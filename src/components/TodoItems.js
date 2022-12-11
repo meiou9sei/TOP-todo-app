@@ -142,6 +142,13 @@ function TodoItems(todoItem) {
   checkbox.checked = todoItem.complete;
   checkbox.addEventListener("click", () => {
     todoItem.complete = !todoItem.complete;
+    const todoItemContainer = document.getElementById(todoItem.id).parentElement
+      .parentElement;
+    if (todoItem.complete) {
+      todoItemContainer.classList.add("completed-todo");
+    } else {
+      todoItemContainer.classList.remove("completed-todo");
+    }
   });
   const label = todoItemElement.querySelector("label");
   label.htmlFor = todoItem.id;
