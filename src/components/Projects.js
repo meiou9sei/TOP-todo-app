@@ -14,6 +14,7 @@ export const projectsArray = [
 ];
 
 export default function displayProjects() {
+  setupNewProjectButton();
   renderNewData();
 }
 
@@ -57,4 +58,14 @@ function renderNewData() {
   });
 
   projectsListContainer.appendChild(projectsList);
+}
+
+function setupNewProjectButton() {
+  const submitNewProject = document.querySelector("#submit-new-project");
+  submitNewProject.addEventListener("click", (e) => addNewProjectItem(e));
+}
+
+function addNewProjectItem(e) {
+  e.preventDefault();
+  console.log("new project button clicked");
 }
