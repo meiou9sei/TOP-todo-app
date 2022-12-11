@@ -103,8 +103,15 @@ function setUpEditButtons() {
       // prettier-ignore
       const newTodoPriority = todoItemEditor.querySelector("#new-todo-priority");
       newTodoPriority.value = todoObject.priority;
-      // have project selector here - need to generate <option> with projects auto-listed out. please generate them from the projects array and not DOM btw (need to redo code for detecting what's active too)
-
+      // prettier-ignore
+      const newTodoProject = todoItemEditor.querySelector("#new-todo-project");
+      projectsArray.forEach((projectItem) => {
+        const option = document.createElement("option");
+        option.value = projectItem.name;
+        option.textContent = projectItem.name;
+        newTodoProject.appendChild(option);
+      });
+      newTodoProject.value = todoObject.project;
       // save button updates local active data
       const saveEditBtn = todoItemEditor.querySelector(".save-edit-button");
       saveEditBtn.addEventListener("click", (e) => {
@@ -113,6 +120,7 @@ function setUpEditButtons() {
         todoObject.description = newTodoDescription.value;
         todoObject.dueDate = newTodoDueDate.value;
         todoObject.priority = newTodoPriority.value;
+        todoObject.project = newTodoProject.value;
         updateAndRender();
       });
       // cancel button does nothing, just exits
