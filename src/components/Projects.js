@@ -1,3 +1,5 @@
+import { renderNewTodos } from "./TodoItems";
+
 export const projectsArray = [
   {
     id: 0,
@@ -36,6 +38,7 @@ function renderNewData() {
         else proj.active = false;
       });
       renderNewData();
+      renderNewTodos();
     });
     project.active
       ? projectItem.classList.add("active-project")

@@ -47,9 +47,8 @@ function renderNewData() {
   }
   // adds new todos with updated data
   todoItemsArray.forEach((todoItem) => {
-    // worry about filtering them later
-    // todoItem.project ===
-    todosList.appendChild(TodoItems(todoItem));
+    if (todoItem.project == projectsArray.find(({ active }) => active).name)
+      todosList.appendChild(TodoItems(todoItem));
   });
 
   setUpEditButtons();
@@ -170,3 +169,5 @@ function addNewTodoItem(e) {
   todoItemsArray.push(newTodo);
   updateAndRender();
 }
+
+export { renderNewData as renderNewTodos };
