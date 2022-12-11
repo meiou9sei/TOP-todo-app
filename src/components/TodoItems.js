@@ -163,6 +163,8 @@ function TodoItems(todoItem) {
   const dueDate = todoItemElement.querySelector(".todoItem-dueDate");
   dueDate.append(todoItem.dueDate);
   const priority = todoItemElement.querySelector(".todoItem-priority");
+  priority.classList.add("priority");
+  priority.classList.add(`priority-${todoItem.priority}`);
   priority.append(todoItem.priority);
 
   return todoItemElement;
