@@ -50,6 +50,9 @@ function renderNewData() {
     if (todoItem.project == projectsArray.find(({ active }) => active).name)
       todosList.appendChild(TodoItems(todoItem));
   });
+  // greys out checked todos
+  const todosListChildren = todosList.childNodes;
+  console.log(todosListChildren);
 
   setUpEditButtons();
 }
@@ -150,6 +153,8 @@ function TodoItems(todoItem) {
       todoItemContainer.classList.remove("completed-todo");
     }
   });
+  const todoItemContainer = todoItemElement.querySelector(".todoItem");
+  if (todoItem.complete) todoItemContainer.classList.add("completed-todo");
   const label = todoItemElement.querySelector("label");
   label.htmlFor = todoItem.id;
   label.append(todoItem.title);
