@@ -60,6 +60,8 @@ function setupNewTodoButton() {
 }
 
 function setUpEditButtons() {
+  // set up flag so can't edit more than 1 at a time
+  let isCurrentlyEditingTodo = false;
   const todoItemsLI = document.querySelectorAll(".todoItem");
   console.log(todoItemsLI);
   todoItemsLI.forEach((todoItemLI) => {
@@ -71,6 +73,17 @@ function setUpEditButtons() {
     editButton.textContent = "Edit Todo";
     editButton.classList.add("edit-button");
     editButton.addEventListener("click", (e) => {
+      if (isCurrentlyEditingTodo) {
+        //display warning
+        const warning = document.createElement("div");
+        warning.classList.add("warning");
+        warning.textContent = "Can only edit 1 todo at a time!";
+        document.querySelector(".edit-todo").appendChild(warning);
+        setTimeout(() => {
+          document.querySelector(".edit-todo").removeChild(warning);
+        }, 5000);
+        return;
+      } else isCurrentlyEditingTodo = true;
       // this is not best practices lmao, but it's fine, this is a small project w/ a deadline
       const todoItemContainer = editButton.parentElement.parentElement;
       todoItemContainer.removeChild(todoItemLI);
