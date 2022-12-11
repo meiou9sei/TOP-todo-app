@@ -60,17 +60,28 @@ function setupNewTodoButton() {
 }
 
 function setUpEditButtons() {
+  // set up flag so can't edit more than 1 at a time
+  let isCurrentlyEditingTodo = false;
   const todoItemsLI = document.querySelectorAll(".todoItem");
-  console.log(todoItemsLI);
   todoItemsLI.forEach((todoItemLI) => {
     const todoItemID = todoItemLI.querySelector("input").id;
-    console.log(todoItemID);
     const todoObject = todoItemsArray.find((obj) => obj.id == todoItemID);
 
     const editButton = document.createElement("button");
     editButton.textContent = "Edit Todo";
     editButton.classList.add("edit-button");
     editButton.addEventListener("click", (e) => {
+      if (isCurrentlyEditingTodo) {
+        //display warning
+        const warning = document.createElement("div");
+        warning.classList.add("warning");
+        warning.textContent = "Can only edit 1 todo at a time!";
+        document.querySelector(".edit-todo").appendChild(warning);
+        setTimeout(() => {
+          document.querySelector(".edit-todo").removeChild(warning);
+        }, 5000);
+        return;
+      } else isCurrentlyEditingTodo = true;
       // this is not best practices lmao, but it's fine, this is a small project w/ a deadline
       const todoItemContainer = editButton.parentElement.parentElement;
       todoItemContainer.removeChild(todoItemLI);
@@ -90,8 +101,15 @@ function setUpEditButtons() {
       // prettier-ignore
       const newTodoPriority = todoItemEditor.querySelector("#new-todo-priority");
       newTodoPriority.value = todoObject.priority;
-      // have project selector here - need to generate <option> with projects auto-listed out. please generate them from the projects array and not DOM btw (need to redo code for detecting what's active too)
-
+      // prettier-ignore
+      const newTodoProject = todoItemEditor.querySelector("#new-todo-project");
+      projectsArray.forEach((projectItem) => {
+        const option = document.createElement("option");
+        option.value = projectItem.name;
+        option.textContent = projectItem.name;
+        newTodoProject.appendChild(option);
+      });
+      newTodoProject.value = todoObject.project;
       // save button updates local active data
       const saveEditBtn = todoItemEditor.querySelector(".save-edit-button");
       saveEditBtn.addEventListener("click", (e) => {
@@ -100,6 +118,7 @@ function setUpEditButtons() {
         todoObject.description = newTodoDescription.value;
         todoObject.dueDate = newTodoDueDate.value;
         todoObject.priority = newTodoPriority.value;
+        todoObject.project = newTodoProject.value;
         updateAndRender();
       });
       // cancel button does nothing, just exits
