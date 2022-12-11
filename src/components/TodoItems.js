@@ -1,3 +1,5 @@
+import { projectsArray } from "./Projects";
+
 // empty this later and have a fetch from storage option
 const todoItemsArray = [
   {
@@ -135,8 +137,7 @@ function TodoItems(todoItem) {
 
 function addNewTodoItem(e) {
   e.preventDefault();
-
-  let project = document.querySelector(".active-project").textContent;
+  let project = projectsArray.find(({ active }) => active).name;
   let title = document.querySelector("#new-todo-title").value;
   let description = document.querySelector("#new-todo-description").value;
   let dueDate = document.querySelector("#new-todo-dueDate").value;

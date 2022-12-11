@@ -1,4 +1,4 @@
-const projectsArray = [
+export const projectsArray = [
   {
     id: 0,
     name: "inbox",
@@ -35,7 +35,6 @@ function renderNewData() {
         if (proj.id === project.id) proj.active = true;
         else proj.active = false;
       });
-      console.table(projectsArray);
       renderNewData();
     });
     project.active
