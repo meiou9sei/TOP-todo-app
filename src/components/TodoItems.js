@@ -1,3 +1,5 @@
+import { projectsArray } from "./Projects";
+
 // empty this later and have a fetch from storage option
 const todoItemsArray = [
   {
@@ -45,9 +47,8 @@ function renderNewData() {
   }
   // adds new todos with updated data
   todoItemsArray.forEach((todoItem) => {
-    // worry about filtering them later
-    // todoItem.project ===
-    todosList.appendChild(TodoItems(todoItem));
+    if (todoItem.project == projectsArray.find(({ active }) => active).name)
+      todosList.appendChild(TodoItems(todoItem));
   });
 
   setUpEditButtons();
@@ -120,6 +121,9 @@ function TodoItems(todoItem) {
   const checkbox = todoItemElement.querySelector("input");
   checkbox.id = todoItem.id;
   checkbox.checked = todoItem.complete;
+  checkbox.addEventListener("click", () => {
+    todoItem.complete = !todoItem.complete;
+  });
   const label = todoItemElement.querySelector("label");
   label.htmlFor = todoItem.id;
   label.append(todoItem.title);
@@ -135,8 +139,7 @@ function TodoItems(todoItem) {
 
 function addNewTodoItem(e) {
   e.preventDefault();
-
-  let project = document.querySelector(".active-project").textContent;
+  let project = projectsArray.find(({ active }) => active).name;
   let title = document.querySelector("#new-todo-title").value;
   let description = document.querySelector("#new-todo-description").value;
   let dueDate = document.querySelector("#new-todo-dueDate").value;
@@ -169,3 +172,5 @@ function addNewTodoItem(e) {
   todoItemsArray.push(newTodo);
   updateAndRender();
 }
+
+export { renderNewData as renderNewTodos };
