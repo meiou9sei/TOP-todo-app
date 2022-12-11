@@ -1,4 +1,25 @@
-export default function Project(projectsArray) {
+const projectsArray = [
+  {
+    id: 0,
+    name: "inbox",
+    active: true,
+  },
+  {
+    id: 1,
+    name: "cooking",
+    active: false,
+  },
+];
+
+export default function displayProjects() {
+  const projectsListContainer = document.querySelector(
+    ".projects-list-container"
+  );
+  const projectsList = Project(projectsArray);
+  projectsListContainer.appendChild(projectsList);
+}
+
+function Project(projectsArray) {
   const projectElement = document.createElement("ul");
   projectElement.classList.add("projects-list");
   projectsArray.forEach((project) => {
