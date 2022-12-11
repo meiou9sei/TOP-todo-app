@@ -42,6 +42,7 @@ header {
   width: 100%;
   padding: 25px;
   background-color: var(--primary);
+  color: white;
 }
 
 main {
@@ -133,6 +134,10 @@ h2 {
 .checkbox-round:checked {
   background-color: var(--primary-dark);
   border: 4px solid white;
+}
+
+.completed-todo {
+  opacity: 50%;
 }
 
 .todoItem-title {
