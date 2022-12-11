@@ -67,5 +67,13 @@ function setupNewProjectButton() {
 
 function addNewProjectItem(e) {
   e.preventDefault();
-  console.log("new project button clicked");
+  let name = document.querySelector("#new-project-title").value;
+  let newProject = {
+    id: Date.now().toString(),
+    name: name,
+    active: false,
+  };
+  document.querySelector(".new-project-adder").reset();
+  projectsArray.push(newProject);
+  updateAndRender();
 }
