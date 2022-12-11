@@ -135,7 +135,13 @@ h2 {
 }
 
 .todoItem-details-container {
-  margin-left: 27px;
+  margin: 0 27px;
+}
+
+.todoItem-details-footer {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .todoItem-dueDate,
