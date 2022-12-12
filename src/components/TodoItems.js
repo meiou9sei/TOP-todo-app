@@ -170,6 +170,22 @@ function setUpMassDeleteButtons() {
   // delete selected project and all todos associated with it
   const DSPButton = document.querySelector("#delete-selected-project");
   DSPButton.addEventListener("click", () => {
+    // prevent deleting inbox
+    let activeProjectID = projectsArray.find(({ active }) => active).id;
+    if (activeProjectID === 0) {
+      const warning = document.createElement("div");
+      warning.classList.add("warning");
+      warning.textContent = "Cannot delete Inbox!";
+      document
+        .querySelector(".mass-delete-functions-container")
+        .append(warning);
+      setTimeout(() => {
+        document
+          .querySelector(".mass-delete-functions-container")
+          .removeChild(warning);
+      }, 5000);
+      return;
+    }
     // deletes todos first
     todoItemsArray
       .filter(
