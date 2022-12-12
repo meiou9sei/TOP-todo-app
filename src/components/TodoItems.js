@@ -1,4 +1,4 @@
-import { projectsArray } from "./Projects";
+import { projectsArray, updateAndRenderProjects } from "./Projects";
 
 const LOCAL_STORAGE_TODO_KEY = "todo.todos";
 
@@ -52,20 +52,6 @@ function renderNewData() {
 function setupNewTodoButton() {
   const submitNewTodo = document.querySelector("#submit-new-todo");
   submitNewTodo.addEventListener("click", (e) => addNewTodoItem(e));
-}
-
-function setUpMassDeleteButtons() {
-  // delete completed todos button
-  const DCTButton = document.querySelector("#delete-completed-todos");
-  DCTButton.addEventListener("click", () => {
-    todoItemsArray
-      .filter(
-        (todo) =>
-          todo.project === projectsArray.find(({ active }) => active).name
-      ) // filters for currently selected (active) project
-      .filter((todo) => todo.complete) // filters for if todo is complete
-      .forEach((todo) => deleteTodo(todo.id)); // calls deleteTodo on them
-  });
 }
 
 function setUpEditButtons() {
@@ -143,6 +129,14 @@ function setUpEditButtons() {
   });
 }
 
+function deleteTodo(idToDelete) {
+  const indexOfTodo = todoItemsArray.findIndex(
+    (todo) => todo.id === idToDelete
+  );
+  todoItemsArray.splice(indexOfTodo, 1);
+  updateAndRender();
+}
+
 // need to set up delete and edit buttons to be in a div together, and flex-end them, rather than being 2 individuals in the todoItem class
 function setUpDeleteButtons() {
   //probably can refactor this w/ edit buttons later, DRY
@@ -160,12 +154,34 @@ function setUpDeleteButtons() {
   });
 }
 
-function deleteTodo(idToDelete) {
-  const indexOfTodo = todoItemsArray.findIndex(
-    (todo) => todo.id === idToDelete
-  );
-  todoItemsArray.splice(indexOfTodo, 1);
-  updateAndRender();
+function setUpMassDeleteButtons() {
+  // delete completed todos button
+  const DCTButton = document.querySelector("#delete-completed-todos");
+  DCTButton.addEventListener("click", () => {
+    todoItemsArray
+      .filter(
+        (todo) =>
+          todo.project === projectsArray.find(({ active }) => active).name
+      ) // filters for currently selected (active) project
+      .filter((todo) => todo.complete) // filters for if todo is complete
+      .forEach((todo) => deleteTodo(todo.id)); // calls deleteTodo on them
+  });
+
+  // delete selected project and all todos associated with it
+  const DSPButton = document.querySelector("#delete-selected-project");
+  DSPButton.addEventListener("click", () => {
+    // deletes todos first
+    todoItemsArray
+      .filter(
+        (todo) =>
+          todo.project === projectsArray.find(({ active }) => active).name
+      )
+      .forEach((todo) => deleteTodo(todo.id));
+    // then deletes project
+    const indexOfProject = projectsArray.findIndex((project) => project.active);
+    projectsArray.splice(indexOfProject, 1);
+    updateAndRenderProjects();
+  });
 }
 
 function TodoItems(todoItem) {

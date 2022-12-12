@@ -79,3 +79,5 @@ function addNewProjectItem(e) {
   projectsArray.push(newProject);
   updateAndRender();
 }
+
+export { updateAndRender as updateAndRenderProjects };
