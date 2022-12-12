@@ -128,6 +128,7 @@ function setUpEditButtons() {
   });
 }
 
+// need to set up delete and edit buttons to be in a div together, and flex-end them, rather than being 2 individuals in the todoItem class
 function setUpDeleteButtons() {
   //probably can refactor this w/ edit buttons later, DRY
   const todoItemsLI = document.querySelectorAll(".todoItem");
@@ -139,16 +140,17 @@ function setUpDeleteButtons() {
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Delete Todo";
     deleteButton.classList.add("delete-button");
-    deleteButton.addEventListener("click", () => {
-      // remove from objects list
-      const indexOfTodo = todoItemsArray.findIndex(
-        (todo) => todo.id === todoItemID
-      );
-      todoItemsArray.splice(indexOfTodo, 1);
-      updateAndRender();
-    });
+    deleteButton.addEventListener("click", () => deleteTodo(todoItemID));
     todoItemLI.appendChild(deleteButton);
   });
+}
+
+function deleteTodo(idToDelete) {
+  const indexOfTodo = todoItemsArray.findIndex(
+    (todo) => todo.id === idToDelete
+  );
+  todoItemsArray.splice(indexOfTodo, 1);
+  updateAndRender();
 }
 
 function TodoItems(todoItem) {
