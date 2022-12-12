@@ -1,29 +1,23 @@
 import { projectsArray } from "./Projects";
 
-// empty this later and have a fetch from storage option
-const todoItemsArray = [
-  {
-    id: 1,
-    project: "cooking",
-    title: "make macaroni",
-    description: "I'm gonna make some yummy macaroni tonight",
-    dueDate: "2023-03-24",
-    priority: 2,
-    complete: false,
-  },
-  {
-    id: 2,
-    project: "inbox",
-    title: "check email",
-    description: "gotta delete some spam mail",
-    dueDate: "2023-04-22",
-    priority: 4,
-    complete: true,
-  },
-];
+const LOCAL_STORAGE_TODO_KEY = "todo.todos";
+
+const todoItemsArray =
+  JSON.parse(localStorage.getItem(LOCAL_STORAGE_TODO_KEY)) || [];
+
+/* example todo object */
+// {
+//   id: 1,
+//   project: "cooking",
+//   title: "make macaroni",
+//   description: "I'm gonna make some yummy macaroni tonight",
+//   dueDate: "2023-03-24",
+//   priority: 2,
+//   complete: false,
+// },
 
 export default function displayTodos() {
-  // add initial reading from JSON data later
+  // add initial reading from localStorage data later
   setupNewTodoButton();
   renderNewData();
 }
@@ -34,8 +28,8 @@ function updateAndRender() {
 }
 
 function updateData() {
-  // this function adds data to JSON
-  console.log("updating");
+  // this function adds data to localStorage
+  localStorage.setItem(LOCAL_STORAGE_TODO_KEY, JSON.stringify(todoItemsArray));
 }
 
 function renderNewData() {

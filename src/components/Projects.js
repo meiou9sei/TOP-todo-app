@@ -1,15 +1,14 @@
 import { renderNewTodos } from "./TodoItems";
 
-export const projectsArray = [
+const LOCAL_STORAGE_PROJECT_KEY = "todo.projects";
+
+export const projectsArray = JSON.parse(
+  localStorage.getItem(LOCAL_STORAGE_PROJECT_KEY)
+) || [
   {
     id: 0,
     name: "inbox",
     active: true,
-  },
-  {
-    id: 1,
-    name: "cooking",
-    active: false,
   },
 ];
 
@@ -24,8 +23,11 @@ function updateAndRender() {
 }
 
 function updateData() {
-  // this function adds data to JSON
-  console.log("updating");
+  // this function adds data to localStorage
+  localStorage.setItem(
+    LOCAL_STORAGE_PROJECT_KEY,
+    JSON.stringify(projectsArray)
+  );
 }
 
 function renderNewData() {
@@ -48,7 +50,7 @@ function renderNewData() {
         if (proj.id === project.id) proj.active = true;
         else proj.active = false;
       });
-      renderNewData();
+      updateAndRender();
       renderNewTodos();
     });
     project.active
