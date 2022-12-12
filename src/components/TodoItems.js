@@ -1,4 +1,4 @@
-import { projectsArray } from "./Projects";
+import { projectsArray, updateAndRenderProjects } from "./Projects";
 
 const LOCAL_STORAGE_TODO_KEY = "todo.todos";
 
@@ -19,6 +19,7 @@ const todoItemsArray =
 export default function displayTodos() {
   // add initial reading from localStorage data later
   setupNewTodoButton();
+  setUpMassDeleteButtons();
   renderNewData();
 }
 
@@ -43,11 +44,9 @@ function renderNewData() {
     if (todoItem.project == projectsArray.find(({ active }) => active).name)
       todosList.appendChild(TodoItems(todoItem));
   });
-  // greys out checked todos
-  const todosListChildren = todosList.childNodes;
-  console.log(todosListChildren);
 
   setUpEditButtons();
+  setUpDeleteButtons();
 }
 
 function setupNewTodoButton() {
@@ -127,6 +126,77 @@ function setUpEditButtons() {
       todoItemContainer.appendChild(todoItemEditor);
     });
     todoItemLI.appendChild(editButton);
+  });
+}
+
+function deleteTodo(idToDelete) {
+  const indexOfTodo = todoItemsArray.findIndex(
+    (todo) => todo.id === idToDelete
+  );
+  todoItemsArray.splice(indexOfTodo, 1);
+  updateAndRender();
+}
+
+// need to set up delete and edit buttons to be in a div together, and flex-end them, rather than being 2 individuals in the todoItem class
+function setUpDeleteButtons() {
+  //probably can refactor this w/ edit buttons later, DRY
+  const todoItemsLI = document.querySelectorAll(".todoItem");
+  todoItemsLI.forEach((todoItemLI) => {
+    // gets id from checkbox input
+    const todoItemID = todoItemLI.querySelector("input").id;
+    // const todoObject = todoItemsArray.find((obj) => obj.id == todoItemID);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete Todo";
+    deleteButton.classList.add("delete-button");
+    deleteButton.addEventListener("click", () => deleteTodo(todoItemID));
+    todoItemLI.appendChild(deleteButton);
+  });
+}
+
+function setUpMassDeleteButtons() {
+  // delete completed todos button
+  const DCTButton = document.querySelector("#delete-completed-todos");
+  DCTButton.addEventListener("click", () => {
+    todoItemsArray
+      .filter(
+        (todo) =>
+          todo.project === projectsArray.find(({ active }) => active).name
+      ) // filters for currently selected (active) project
+      .filter((todo) => todo.complete) // filters for if todo is complete
+      .forEach((todo) => deleteTodo(todo.id)); // calls deleteTodo on them
+  });
+
+  // delete selected project and all todos associated with it
+  const DSPButton = document.querySelector("#delete-selected-project");
+  DSPButton.addEventListener("click", () => {
+    // prevent deleting inbox
+    let activeProjectID = projectsArray.find(({ active }) => active).id;
+    if (activeProjectID === 0) {
+      const warning = document.createElement("div");
+      warning.classList.add("warning");
+      warning.textContent = "Cannot delete Inbox!";
+      document
+        .querySelector(".mass-delete-functions-container")
+        .append(warning);
+      setTimeout(() => {
+        document
+          .querySelector(".mass-delete-functions-container")
+          .removeChild(warning);
+      }, 5000);
+      return;
+    }
+    // deletes todos first
+    todoItemsArray
+      .filter(
+        (todo) =>
+          todo.project === projectsArray.find(({ active }) => active).name
+      )
+      .forEach((todo) => deleteTodo(todo.id));
+    // then deletes project
+    const indexOfProject = projectsArray.findIndex((project) => project.active);
+    projectsArray.splice(indexOfProject, 1);
+    updateAndRenderProjects();
   });
 }
 

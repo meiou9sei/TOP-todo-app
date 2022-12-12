@@ -12,7 +12,7 @@
         <h1 class="app-title">meiou9sei's simple todo app</h1>
     </header>
     <main>
-        <div class="projects">
+        <section class="projects">
             <h2>Projects</h2>
             <div class="projects-list-container"></div>
             <form class="new-project-adder">
@@ -23,8 +23,14 @@
                 </div>
                 <button type="submit" id="submit-new-project">Create New Project</button>
             </form>
-        </div>
-        <div class="todos">
+            <div class="mass-delete-functions-container">
+                <div class="mass-delete-functions">
+                    <button id="delete-completed-todos">Delete Completed Todos</button>
+                    <button id="delete-selected-project">Delete Selected Project</button>
+                </div>
+            </div>
+        </section>
+        <section class="todos">
             <h2>Todos</h2>
             <ul class="todos-container"></ul>
             <form class="new-todo-adder">
@@ -52,7 +58,7 @@
                 </div>
                 <button type="submit" id="submit-new-todo">Create New Todo</button>
             </form>
-        </div>
+        </section>
     </main>
     <footer>
         <p class="footer-text">Webpage created by <a href="https://github.com/meiou9sei" class="links" target=_blank>meiou9sei</a> as part of <a href="https://theodinproject.com" class="links" target=_blank>The Odin Project</a> course curriculum.</p>

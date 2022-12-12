@@ -101,6 +101,11 @@ h2 {
   margin-top: 3rem;
 }
 
+.mass-delete-functions {
+  margin-top: 1rem;
+  display: flex;
+}
+
 .todos {
   grid-area: todos;
   background-color: var(--secondary);
@@ -186,7 +191,8 @@ h2 {
   background-color: var(--priority-4);
 }
 
-.edit-button {
+.edit-button,
+.delete-button {
   width: 25%;
   align-self: center;
 }
