@@ -43,11 +43,9 @@ function renderNewData() {
     if (todoItem.project == projectsArray.find(({ active }) => active).name)
       todosList.appendChild(TodoItems(todoItem));
   });
-  // greys out checked todos
-  const todosListChildren = todosList.childNodes;
-  console.log(todosListChildren);
 
   setUpEditButtons();
+  setUpDeleteButtons();
 }
 
 function setupNewTodoButton() {
@@ -127,6 +125,29 @@ function setUpEditButtons() {
       todoItemContainer.appendChild(todoItemEditor);
     });
     todoItemLI.appendChild(editButton);
+  });
+}
+
+function setUpDeleteButtons() {
+  //probably can refactor this w/ edit buttons later, DRY
+  const todoItemsLI = document.querySelectorAll(".todoItem");
+  todoItemsLI.forEach((todoItemLI) => {
+    // gets id from checkbox input
+    const todoItemID = todoItemLI.querySelector("input").id;
+    // const todoObject = todoItemsArray.find((obj) => obj.id == todoItemID);
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete Todo";
+    deleteButton.classList.add("delete-button");
+    deleteButton.addEventListener("click", () => {
+      // remove from objects list
+      const indexOfTodo = todoItemsArray.findIndex(
+        (todo) => todo.id === todoItemID
+      );
+      todoItemsArray.splice(indexOfTodo, 1);
+      updateAndRender();
+    });
+    todoItemLI.appendChild(deleteButton);
   });
 }
 
