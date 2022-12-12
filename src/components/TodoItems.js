@@ -19,6 +19,7 @@ const todoItemsArray =
 export default function displayTodos() {
   // add initial reading from localStorage data later
   setupNewTodoButton();
+  setUpMassDeleteButtons();
   renderNewData();
 }
 
@@ -51,6 +52,20 @@ function renderNewData() {
 function setupNewTodoButton() {
   const submitNewTodo = document.querySelector("#submit-new-todo");
   submitNewTodo.addEventListener("click", (e) => addNewTodoItem(e));
+}
+
+function setUpMassDeleteButtons() {
+  // delete completed todos button
+  const DCTButton = document.querySelector("#delete-completed-todos");
+  DCTButton.addEventListener("click", () => {
+    todoItemsArray
+      .filter(
+        (todo) =>
+          todo.project === projectsArray.find(({ active }) => active).name
+      ) // filters for currently selected (active) project
+      .filter((todo) => todo.complete) // filters for if todo is complete
+      .forEach((todo) => deleteTodo(todo.id)); // calls deleteTodo on them
+  });
 }
 
 function setUpEditButtons() {
