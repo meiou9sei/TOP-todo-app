@@ -70,6 +70,17 @@ function setupNewProjectButton() {
 function addNewProjectItem(e) {
   e.preventDefault();
   let name = document.querySelector("#new-project-title").value;
+  if (!name) {
+    //display warning
+    const warning = document.createElement("div");
+    warning.classList.add("warning");
+    warning.textContent = "Must give project name!";
+    document.querySelector(".new-project-adder").appendChild(warning);
+    setTimeout(() => {
+      document.querySelector(".new-project-adder").removeChild(warning);
+    }, 5000);
+    return;
+  }
   let newProject = {
     id: Date.now().toString(),
     name: name,
